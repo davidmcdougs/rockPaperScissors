@@ -1,0 +1,103 @@
+<doctype! html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+</head>
+<body>
+	<div class='container'>
+		<div class='row'>
+			<button id = 'ready'>Click here to ready up</button>
+		</div>
+		<div class='row'>
+			<div class='col-lg-4 col-md-4 col-sm-4 choice' id='rock'>
+				rock
+			</div>
+			<div class='col-lg-4 col-md-4 col-sm-4 choice' id='paper'>
+				paper
+			</div>
+			<div class='col-lg-4 col-md-4 col-sm-4 choice' id='scissors'>
+				scissors
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var choice1;
+	var choice2;
+	// these are primary variables for holding user choices
+	var player1
+	var player2
+
+	function readyCheck(){
+		// this function will verifiy that two players are live, and then enable/show the choice buttons
+		pull player1 and player2 variable from firebase.
+ if player1 is not defined, assign player1 variable. push player1 variable to firebase
+ if player1 is assigned, and player2 is not assigned, assign player2 and push to firebase
+ if both are assigned, display a no open lobbys message. assign a player3 variable.
+ 	//at this point, players clicking the ready button should be assigned either a player1 player2, or denied play.
+	}
+	function setup(){
+	// 	if not player3, draw rock, paper and scizzor photos with the class '.choice'
+	}
+	function turn1(){
+		
+	}
+	
+
+	function compare(){
+		//core conditional tree for base game
+		switch (choice1){
+			case 'rock':
+				if (choice2 == 'rock'){
+					console.log("its a tie");
+				}	
+				else if (choice2 == 'paper'){
+					console.log('paper wins!');
+				}
+				else {
+					console.log('Rock wins!');
+				}
+				break;
+			case 'paper':
+				if (choice2 == 'rock'){
+					console.log('paper wins!');
+				}
+				else if (choice2 == 'paper'){
+					console.log("it's a tie!");
+				}
+				else {
+					console.log('scissors wins!');
+				}
+				break;
+			case 'scissors':
+				if (choice2 == 'rock'){
+					console.log('rock wins!');
+				}
+				else if (choice2 == 'paper'){
+					console.log('scissors wins!');
+				}
+				else {
+					console.log('its a tie!')
+				}
+		}
+	}
+	$('.choice').on('click', function(){
+		// this listener will take anything with the class choice, and set choice1, then choice2 to the Id of the clicked element. afterwards, it will run compare() and then wipe choice1 and choice2
+		if(choice1 == undefined){
+			choice1 = this.id;
+		}
+		else{
+			choice2 = this.id;
+			compare();
+			choice1 = undefined;
+			choice2 = undefined;
+		}
+	})
+</script>
